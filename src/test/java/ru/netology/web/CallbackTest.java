@@ -54,11 +54,9 @@ class CallbackTest {
         elements.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
         elements.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         elements.findElement(By.className("button")).click();
-        WebElement name = elements.findElement(By.cssSelector("[data-test-id=name]"));
-        name.findElement(By.className("input__sub"));
+        WebElement name = elements.findElement(By.cssSelector("[data-test-id=name].input_invalid .input__sub"));
         String text = name.getText();
-        assertEquals("Фамилия и имя\n" +
-                "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", text.trim());
+        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", text.trim());
     }
 
     @Test
@@ -69,11 +67,9 @@ class CallbackTest {
         elements.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
         elements.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         elements.findElement(By.className("button")).click();
-        WebElement name = elements.findElement(By.cssSelector("[data-test-id=name]"));
-        name.findElement(By.className("input__sub"));
+        WebElement name = elements.findElement(By.cssSelector("[data-test-id=name].input_invalid .input__sub"));
         String text = name.getText();
-        assertEquals("Фамилия и имя\n" +
-                "Поле обязательно для заполнения", text.trim());
+        assertEquals("Поле обязательно для заполнения", text.trim());
     }
 
     @Test
@@ -84,11 +80,9 @@ class CallbackTest {
         elements.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("79270000000");
         elements.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         elements.findElement(By.className("button")).click();
-        WebElement name = elements.findElement(By.cssSelector("[data-test-id=phone]"));
-        name.findElement(By.className("input__sub"));
+        WebElement name = elements.findElement(By.cssSelector("[data-test-id=phone].input_invalid .input__sub"));
         String text = name.getText();
-        assertEquals("Мобильный телефон\n" +
-                "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
     }
 
     @Test
@@ -99,11 +93,9 @@ class CallbackTest {
         elements.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
         elements.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         elements.findElement(By.className("button")).click();
-        WebElement name = elements.findElement(By.cssSelector("[data-test-id=phone]"));
-        name.findElement(By.className("input__sub"));
+        WebElement name = elements.findElement(By.cssSelector("[data-test-id=phone].input_invalid .input__sub"));
         String text = name.getText();
-        assertEquals("Мобильный телефон\n" +
-                "Поле обязательно для заполнения", text.trim());
+        assertEquals("Поле обязательно для заполнения", text.trim());
     }
 
     @Test
@@ -111,10 +103,9 @@ class CallbackTest {
         driver.get("http://localhost:9999");
         WebElement elements = driver.findElement(By.cssSelector("form"));
         elements.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Василий Петров");
-        elements.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
+        elements.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
         elements.findElement(By.className("button")).click();
-        WebElement name = elements.findElement(By.cssSelector("[data-test-id=agreement]"));
-        name.findElement(By.className("checkbox__text"));
+        WebElement name = elements.findElement(By.cssSelector("[data-test-id=agreement].input_invalid .checkbox__text"));
         String text = name.getText();
         assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных " +
                 "и разрешаю сделать запрос в бюро кредитных историй", text.trim());
